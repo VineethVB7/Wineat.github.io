@@ -49,13 +49,15 @@ function useTheme() {
     })
   }, [theme])
 
-  const finishTransition = React.useCallback(() => {
+  const switchTheme = React.useCallback(() => {
     const next = pendingTheme.current
-    if (next) {
-      setTheme(next)
-      localStorage.setItem('portfolio-theme', next)
-      pendingTheme.current = null
-    }
+    if (!next) return
+    setTheme(next)
+    localStorage.setItem('portfolio-theme', next)
+  }, [])
+
+  const finishTransition = React.useCallback(() => {
+    pendingTheme.current = null
     setTransition(null)
   }, [])
 
@@ -64,7 +66,7 @@ function useTheme() {
     localStorage.setItem('portfolio-theme', theme)
   }, [theme])
 
-  return { theme, toggleTheme, transition, finishTransition }
+  return { theme, toggleTheme, switchTheme, transition, finishTransition }
 }
 
 function ThemeToggle({ theme, toggleTheme }) {
@@ -79,7 +81,7 @@ function ThemeToggle({ theme, toggleTheme }) {
 
 function App() {
   const route = useHashRoute()
-  const { theme, toggleTheme, transition, finishTransition } = useTheme()
+  const { theme, toggleTheme, switchTheme, transition, finishTransition } = useTheme()
   const [open, setOpen] = React.useState(false)
   const closeMenu = () => setOpen(false)
 
@@ -132,7 +134,7 @@ function App() {
     </div>
   )
 
-  return <>{content}{transition && <ThemeTransition type={transition} onComplete={finishTransition} />}</>
+  return <>{content}{transition && <ThemeTransition type={transition} onSwitch={switchTheme} onComplete={finishTransition} />}</>
 }
 
 createRoot(document.getElementById('root')).render(<App />)
