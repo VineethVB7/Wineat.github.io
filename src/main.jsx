@@ -35,11 +35,10 @@ function useHashRoute() {
 
 function App() {
   const route = useHashRoute()
-
-  if (route === '#gvs') return <GvsPage />
-
   const [open, setOpen] = React.useState(false)
   const closeMenu = () => setOpen(false)
+
+  if (route === '#gvs') return <GvsPage />
 
   return (
     <div className="site-shell">
