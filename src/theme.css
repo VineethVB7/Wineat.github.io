@@ -1,0 +1,234 @@
+:root {
+  --gold: #d4af37;
+  --gold-bright: #f0cf68;
+  --gold-soft: #a98a2e;
+  --gold-line: rgba(212,175,55,.28);
+  --gold-glow: rgba(212,175,55,.14);
+  --green-deep: #10170c;
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(215,255,79,.045), transparent 28%),
+    radial-gradient(circle at 86% 18%, rgba(212,175,55,.055), transparent 25%),
+    var(--bg);
+}
+
+.site-shell,
+.gvs-page {
+  background:
+    radial-gradient(circle at 78% 4%, rgba(215,255,79,.055), transparent 24%),
+    radial-gradient(circle at 16% 22%, rgba(212,175,55,.035), transparent 22%),
+    var(--bg);
+}
+
+.nav-wrap {
+  border-bottom-color: rgba(212,175,55,.14);
+  background: rgba(6,8,7,.86);
+}
+
+.brand-mark {
+  border-color: rgba(212,175,55,.7);
+  color: var(--gold-bright);
+  box-shadow: inset 0 0 18px rgba(212,175,55,.06), 0 0 20px rgba(212,175,55,.05);
+}
+
+.nav-links a:hover { color: var(--gold-bright); }
+.nav-cta { border-color: var(--gold-line); }
+.nav-cta:hover { background: rgba(212,175,55,.07); }
+
+.eyebrow { color: var(--accent); }
+.pulse { box-shadow: 0 0 15px var(--accent), 0 0 30px rgba(212,175,55,.25); }
+
+h1 em,
+h2 em {
+  color: #d5d0c0;
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.button:hover { transform: translateY(-2px); }
+.button.primary {
+  background: linear-gradient(135deg, var(--accent), #b8df3f);
+  box-shadow: 0 10px 35px rgba(215,255,79,.12);
+}
+.button.secondary {
+  border-color: var(--gold-line);
+}
+.button.secondary:hover {
+  border-color: rgba(240,207,104,.65);
+  background: rgba(212,175,55,.06);
+  color: var(--gold-bright);
+}
+
+.hero-orbit::after {
+  content: '';
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,.08), transparent 68%);
+  pointer-events: none;
+}
+
+.orbit-one { border-color: rgba(215,255,79,.17); }
+.orbit-two { border-color: rgba(212,175,55,.13); }
+.orbit-core {
+  border-color: rgba(212,175,55,.65);
+  box-shadow: 0 0 70px rgba(215,255,79,.08), 0 0 100px rgba(212,175,55,.08);
+}
+
+.ticker {
+  border-color: rgba(212,175,55,.16);
+  color: #81794f;
+}
+
+.section-label { color: #8b855f; }
+.facts strong { color: var(--gold-bright); }
+
+.work-section {
+  background:
+    linear-gradient(180deg, rgba(212,175,55,.018), transparent 20%),
+    #0d0f10;
+  border-color: rgba(212,175,55,.14);
+}
+
+.project {
+  position: relative;
+  transition: padding .25s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.project::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(var(--accent), var(--gold));
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform .25s ease;
+}
+.project:hover {
+  background: linear-gradient(90deg, rgba(215,255,79,.025), rgba(212,175,55,.035));
+  border-bottom-color: rgba(212,175,55,.24);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.01);
+}
+.project:hover::before { transform: scaleY(1); }
+.project.featured .project-number,
+.project.featured .project-meta { color: var(--gold-bright); }
+.project:hover .project-arrow { color: var(--gold-bright); }
+
+.tags span {
+  border-color: rgba(212,175,55,.16);
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.project:hover .tags span {
+  border-color: rgba(212,175,55,.25);
+}
+
+.skill-card {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(212,175,55,.14);
+  transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.skill-card::after {
+  content: '';
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  right: -35px;
+  bottom: -45px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,.13), transparent 70%);
+}
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212,175,55,.38);
+  background: rgba(212,175,55,.025);
+  box-shadow: 0 16px 40px rgba(0,0,0,.24);
+}
+.skill-card svg { color: var(--gold-bright); }
+
+.statement-section {
+  background: linear-gradient(135deg, #d7ff4f 0%, #c9ed49 58%, #d4af37 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(0,0,0,.15);
+}
+
+.contact-links a {
+  transition: color .2s ease, padding-left .2s ease, border-color .2s ease;
+}
+.contact-links a:hover {
+  color: var(--gold-bright);
+  padding-left: 8px;
+  border-bottom-color: rgba(212,175,55,.35);
+}
+.contact-links a svg:last-child { color: var(--gold-soft); }
+.location svg { color: var(--gold-soft); }
+.footer a:hover { color: var(--gold-bright); }
+
+/* GVS detail page */
+.gvs-page {
+  background:
+    radial-gradient(circle at 72% 10%, rgba(215,255,79,.07), transparent 27%),
+    radial-gradient(circle at 12% 42%, rgba(212,175,55,.05), transparent 24%),
+    var(--bg);
+}
+.gvs-back:hover { color: var(--gold-bright); }
+.gvs-kicker { color: var(--gold-bright); }
+.gvs-tags span { border-color: rgba(212,175,55,.2); }
+.gvs-diagram-section {
+  background: linear-gradient(180deg, rgba(212,175,55,.018), transparent), #0d0f10;
+  border-color: rgba(212,175,55,.15);
+}
+.gvs-system-card {
+  border-color: rgba(212,175,55,.18);
+  box-shadow: 0 25px 80px rgba(0,0,0,.2);
+}
+.flow-node {
+  border-color: rgba(255,255,255,.09);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.flow-node:hover {
+  transform: translateY(-3px);
+  border-color: rgba(212,175,55,.4);
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);
+}
+.flow-node svg,
+.gvs-detail-icon { color: var(--gold-bright); }
+.flow-node.accent { border-color: rgba(215,255,79,.38); }
+.flow-line { background: linear-gradient(90deg, rgba(215,255,79,.5), rgba(212,175,55,.55)); }
+.gvs-detail { border-bottom-color: rgba(212,175,55,.13); }
+.gvs-detail-number { color: #81794f; }
+.gvs-status {
+  background: linear-gradient(135deg, #d7ff4f 0%, #c7ed45 60%, #d4af37 100%);
+}
+
+/* Subtle gold framing for major content blocks */
+.about-grid > div:last-child,
+.stack-content,
+.contact-content {
+  position: relative;
+}
+.about-grid > div:last-child::before,
+.stack-content::before,
+.contact-content::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(var(--gold), transparent);
+  opacity: .45;
+}
+
+@media (max-width: 760px) {
+  .about-grid > div:last-child::before,
+  .stack-content::before,
+  .contact-content::before { display: none; }
+}
