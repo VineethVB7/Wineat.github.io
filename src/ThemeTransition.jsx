@@ -7,66 +7,76 @@ function random(seed) {
   return value - Math.floor(value)
 }
 
-function drawEnergyVortex(ctx, width, height, progress, seed) {
-  const cx = width / 2
-  const cy = height / 2
-  const maxRadius = Math.hypot(width, height) * 0.76
-  const pull = Math.min(1, Math.max(0, progress / 0.72))
-  const fade = Math.sin(Math.min(1, progress / 0.9) * Math.PI)
+function drawKirbyParticles(ctx, width, height, progress, seed) {
+  const count = Math.min(900, Math.max(280, Math.floor((width * height) / 4200)))
+  const travel = Math.min(1, progress / 0.82)
+  const fade = Math.sin(Math.min(1, progress / 0.94) * Math.PI)
 
   ctx.save()
   ctx.globalCompositeOperation = 'screen'
-
-  const fieldRadius = maxRadius * (0.08 + pull * 0.95)
-  const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, fieldRadius)
-  gradient.addColorStop(0, `rgba(255,255,255,${0.2 * fade})`)
-  gradient.addColorStop(0.07, `rgba(215,255,79,${0.13 * fade})`)
-  gradient.addColorStop(0.38, `rgba(215,255,79,${0.045 * fade})`)
-  gradient.addColorStop(1, 'rgba(0,0,0,0)')
-  ctx.fillStyle = gradient
-  ctx.fillRect(0, 0, width, height)
-
-  const count = Math.min(1100, Math.max(320, Math.floor(width * height / 1800)))
+  ctx.lineCap = 'round'
 
   for (let i = 0; i < count; i += 1) {
-    const a = random(i * 1.73 + seed)
-    const b = random(i * 7.91 + seed * 2.3)
-    const c = random(i * 13.17 + seed * 4.1)
-    const startRadius = maxRadius * (0.18 + b * 0.82)
-    const baseAngle = a * Math.PI * 2
-    const swirl = baseAngle + pull * (2.0 + b * 4.8)
-    const radius = startRadius * (1 - pull * (0.9 + c * 0.08))
-    const x = cx + Math.cos(swirl) * radius
-    const y = cy + Math.sin(swirl) * radius * (0.64 + c * 0.32)
+    const a = random(i * 1.71 + seed)
+    const b = random(i * 5.93 + seed * 1.7)
+    const c = random(i * 11.37 + seed * 3.1)
+    const d = random(i * 17.81 + seed * 4.8)
 
-    const previousPull = Math.max(0, pull - 0.035)
-    const previousRadius = startRadius * (1 - previousPull * (0.9 + c * 0.08))
-    const previousAngle = baseAngle + previousPull * (2.0 + b * 4.8)
-    const px = cx + Math.cos(previousAngle) * previousRadius
-    const py = cy + Math.sin(previousAngle) * previousRadius * (0.64 + c * 0.32)
+    const startX = a * width
+    const startY = b * height
+    const direction = (c - 0.5) * Math.PI * 2
+    const speed = width * (0.08 + d * 0.34)
+    const drift = Math.sin(progress * Math.PI * 2 + a * 9) * height * 0.035
 
-    const alpha = Math.max(0, fade * (0.15 + c * 0.72) * (0.45 + pull * 0.75))
+    const x = startX + Math.cos(direction) * speed * travel
+    const y = startY + Math.sin(direction) * speed * travel + drift
+    const trail = speed * (0.035 + d * 0.08) * travel
+    const px = x - Math.cos(direction) * trail
+    const py = y - Math.sin(direction) * trail
+
+    const size = 0.7 + c * 3.2
+    const alpha = Math.max(0, fade * (0.25 + d * 0.7))
+    const gold = i % 9 === 0
 
     ctx.beginPath()
     ctx.moveTo(px, py)
     ctx.lineTo(x, y)
-    ctx.strokeStyle = i % 13 === 0 ? `rgba(255,216,102,${alpha})` : `rgba(215,255,79,${alpha})`
-    ctx.lineWidth = 0.5 + c * 1.5
-    ctx.shadowBlur = 5 + c * 9
-    ctx.shadowColor = i % 13 === 0 ? 'rgba(255,216,102,.8)' : 'rgba(215,255,79,.8)'
+    ctx.strokeStyle = gold
+      ? `rgba(255,216,102,${alpha * 0.8})`
+      : `rgba(215,255,79,${alpha})`
+    ctx.lineWidth = size * 0.7
+    ctx.shadowBlur = 5 + size * 5
+    ctx.shadowColor = gold ? 'rgba(255,216,102,.8)' : 'rgba(215,255,79,.8)'
     ctx.stroke()
+
+    if (c > 0.72) {
+      ctx.beginPath()
+      ctx.arc(x, y, size, 0, Math.PI * 2)
+      ctx.fillStyle = gold
+        ? `rgba(255,239,176,${alpha})`
+        : `rgba(235,255,180,${alpha})`
+      ctx.fill()
+    }
   }
 
-  const bloom = Math.pow(Math.max(0, Math.sin(progress * Math.PI * 1.2)), 6)
-  if (bloom > 0.01) {
-    const r = Math.max(width, height) * (0.01 + bloom * 0.09)
-    const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, r)
-    core.addColorStop(0, `rgba(255,255,255,${0.95 * bloom})`)
-    core.addColorStop(0.16, `rgba(215,255,79,${0.5 * bloom})`)
-    core.addColorStop(0.55, `rgba(215,255,79,${0.12 * bloom})`)
-    core.addColorStop(1, 'rgba(215,255,79,0)')
-    ctx.fillStyle = core
-    ctx.fillRect(cx - r, cy - r, r * 2, r * 2)
+  // Irregular energy bursts — deliberately no center, spiral, ring, or vortex.
+  const bursts = 18
+  for (let i = 0; i < bursts; i += 1) {
+    const bx = random(i * 31.7 + seed) * width
+    const by = random(i * 47.3 + seed * 2) * height
+    const pulse = Math.pow(Math.max(0, Math.sin(progress * Math.PI * (1.4 + random(i + seed) * 1.2))), 8)
+    const radius = 2 + random(i * 3.2 + seed) * 10
+
+    if (pulse > 0.015) {
+      const glow = ctx.createRadialGradient(bx, by, 0, bx, by, radius * 5)
+      glow.addColorStop(0, `rgba(255,255,255,${pulse * 0.9})`)
+      glow.addColorStop(0.18, `rgba(215,255,79,${pulse * 0.5})`)
+      glow.addColorStop(1, 'rgba(215,255,79,0)')
+      ctx.fillStyle = glow
+      ctx.beginPath()
+      ctx.arc(bx, by, radius * 5, 0, Math.PI * 2)
+      ctx.fill()
+    }
   }
 
   ctx.restore()
@@ -151,12 +161,12 @@ export default function ThemeTransition({ type, onComplete }) {
       ctx.clearRect(0, 0, width, height)
 
       if (type === 'dark') {
-        // The transition is deliberately drawn BEFORE the theme is changed.
-        // A full-screen black veil keeps the old light UI underneath invisible.
-        const veil = Math.min(1, progress * 1.55)
-        ctx.fillStyle = `rgba(5,6,7,${0.12 + veil * 0.88})`
+        // Keep the existing light page visible while the particles build up.
+        // The theme itself is still changed only after the animation completes.
+        const veil = Math.min(1, progress * 0.72)
+        ctx.fillStyle = `rgba(5,6,7,${veil * 0.82})`
         ctx.fillRect(0, 0, width, height)
-        drawEnergyVortex(ctx, width, height, progress, seed)
+        drawKirbyParticles(ctx, width, height, progress, seed)
       } else {
         ctx.fillStyle = `rgba(190,225,255,${Math.max(0, progress * 0.16)})`
         ctx.fillRect(0, 0, width, height)
