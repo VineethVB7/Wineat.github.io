@@ -1,20 +1,23 @@
-/* Smooth theme transition */
-html.theme-transition,
-html.theme-transition body,
-html.theme-transition body *,
-html.theme-transition body *::before,
-html.theme-transition body *::after {
-  transition-property: background-color, background, border-color, color, fill, stroke, box-shadow, text-shadow;
-  transition-duration: 420ms;
-  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+.theme-effect {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  pointer-events: none;
+  display: block;
+}
+
+.theme-effect-dark {
+  background: transparent;
+}
+
+.theme-effect-light {
+  background: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.theme-transition,
-  html.theme-transition body,
-  html.theme-transition body *,
-  html.theme-transition body *::before,
-  html.theme-transition body *::after {
-    transition-duration: 1ms;
+  .theme-effect {
+    display: none;
   }
 }
