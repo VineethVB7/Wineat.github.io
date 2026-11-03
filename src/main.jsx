@@ -2,11 +2,9 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X, Sun, Moon } from 'lucide-react'
 import GvsPage from './GvsPage'
-import ThemeTransition from './ThemeTransition'
 import './styles.css'
 import './theme.css'
 import './mode-overrides.css'
-import './theme-transition.css'
 
 const projects = [
   { number: '01', title: 'GVS — Gyroscopic Vehicle System', type: 'Personal / Experimental', description: 'An ongoing engineering project exploring vehicle dynamics, sensor data, and a visual system for understanding and controlling induced current.', tags: ['React', 'Data Visualization', 'Vehicle Systems'], featured: true, href: '#gvs' },
@@ -37,26 +35,9 @@ function useHashRoute() {
 
 function useTheme() {
   const [theme, setTheme] = React.useState(() => localStorage.getItem('portfolio-theme') || 'dark')
-  const [transition, setTransition] = React.useState(null)
-  const pendingTheme = React.useRef(null)
 
   const toggleTheme = React.useCallback(() => {
-    setTheme(current => {
-      const next = current === 'dark' ? 'light' : 'dark'
-      pendingTheme.current = next
-      setTransition(next)
-      return current
-    })
-  }, [])
-
-  const finishTransition = React.useCallback(() => {
-    const next = pendingTheme.current
-    if (next) {
-      setTheme(next)
-      localStorage.setItem('portfolio-theme', next)
-      pendingTheme.current = null
-    }
-    setTransition(null)
+    setTheme(current => current === 'dark' ? 'light' : 'dark')
   }, [])
 
   React.useEffect(() => {
@@ -64,7 +45,7 @@ function useTheme() {
     localStorage.setItem('portfolio-theme', theme)
   }, [theme])
 
-  return { theme, toggleTheme, transition, finishTransition }
+  return { theme, toggleTheme }
 }
 
 function ThemeToggle({ theme, toggleTheme }) {
@@ -79,7 +60,7 @@ function ThemeToggle({ theme, toggleTheme }) {
 
 function App() {
   const route = useHashRoute()
-  const { theme, toggleTheme, transition, finishTransition } = useTheme()
+  const { theme, toggleTheme } = useTheme()
   const [open, setOpen] = React.useState(false)
   const closeMenu = () => setOpen(false)
 
@@ -132,12 +113,7 @@ function App() {
     </div>
   )
 
-  return (
-    <>
-      {content}
-      {transition && <ThemeTransition type={transition} onComplete={finishTransition} />}
-    </>
-  )
+  return content
 }
 
 createRoot(document.getElementById('root')).render(<App />)
