@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X, Sun, Moon } from 'lucide-react'
 import GvsPage from './GvsPage'
 import './styles.css'
 import './theme.css'
@@ -24,22 +24,40 @@ const LINKEDIN = 'https://www.linkedin.com/in/vineeth-bhagavati-4b5371246'
 
 function useHashRoute() {
   const [route, setRoute] = React.useState(() => window.location.hash || '#top')
-
   React.useEffect(() => {
     const onHashChange = () => setRoute(window.location.hash || '#top')
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
-
   return route
+}
+
+function useTheme() {
+  const [theme, setTheme] = React.useState(() => localStorage.getItem('portfolio-theme') || 'dark')
+  React.useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    localStorage.setItem('portfolio-theme', theme)
+  }, [theme])
+  return { theme, toggleTheme: () => setTheme(current => current === 'dark' ? 'light' : 'dark') }
+}
+
+function ThemeToggle({ theme, toggleTheme }) {
+  const light = theme === 'light'
+  return (
+    <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${light ? 'dark' : 'light'} mode`} title={`Switch to ${light ? 'dark' : 'light'} mode`}>
+      {light ? <Moon size={16} /> : <Sun size={16} />}
+      <span>{light ? 'Dark' : 'Light'}</span>
+    </button>
+  )
 }
 
 function App() {
   const route = useHashRoute()
+  const { theme, toggleTheme } = useTheme()
   const [open, setOpen] = React.useState(false)
   const closeMenu = () => setOpen(false)
 
-  if (route === '#gvs') return <GvsPage />
+  if (route === '#gvs') return <GvsPage theme={theme} toggleTheme={toggleTheme} />
 
   return (
     <div className="site-shell">
@@ -49,6 +67,7 @@ function App() {
           <button className="menu-button" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X size={21} /> : <Menu size={21} />}</button>
           <div className={`nav-links ${open ? 'is-open' : ''}`}>
             <a href="#about" onClick={closeMenu}>About</a><a href="#work" onClick={closeMenu}>Work</a><a href="#stack" onClick={closeMenu}>Stack</a><a href="#contact" onClick={closeMenu}>Contact</a>
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
             <a className="nav-cta" href="https://github.com/VineethVB7" target="_blank" rel="noreferrer" onClick={closeMenu}>GitHub <ArrowUpRight size={15} /></a>
           </div>
         </nav>
