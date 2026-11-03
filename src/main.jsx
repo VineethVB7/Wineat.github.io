@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X } from 'lucide-react'
 import GvsPage from './GvsPage'
 import './styles.css'
+import './theme.css'
 
 const projects = [
   { number: '01', title: 'GVS — Gyroscopic Vehicle System', type: 'Personal / Experimental', description: 'An ongoing engineering project exploring vehicle dynamics, sensor data, and a visual system for understanding and controlling induced current.', tags: ['React', 'Data Visualization', 'Vehicle Systems'], featured: true, href: '#gvs' },
