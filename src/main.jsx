@@ -2,6 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X, Sun, Moon } from 'lucide-react'
 import GvsPage from './GvsPage'
+import ThemeTransition from './ThemeTransition'
 import './styles.css'
 import './theme.css'
 import './mode-overrides.css'
@@ -36,18 +37,24 @@ function useHashRoute() {
 
 function useTheme() {
   const [theme, setTheme] = React.useState(() => localStorage.getItem('portfolio-theme') || 'dark')
+  const [transition, setTransition] = React.useState(null)
+
   const toggleTheme = React.useCallback(() => {
-    document.documentElement.classList.add('theme-transition')
-    setTheme(current => current === 'dark' ? 'light' : 'dark')
-    window.setTimeout(() => document.documentElement.classList.remove('theme-transition'), 460)
+    setTheme(current => {
+      const next = current === 'dark' ? 'light' : 'dark'
+      setTransition(next === 'dark' ? 'dark' : 'light')
+      return next
+    })
   }, [])
+
+  const finishTransition = React.useCallback(() => setTransition(null), [])
 
   React.useEffect(() => {
     document.documentElement.dataset.theme = theme
     localStorage.setItem('portfolio-theme', theme)
   }, [theme])
 
-  return { theme, toggleTheme }
+  return { theme, toggleTheme, transition, finishTransition }
 }
 
 function ThemeToggle({ theme, toggleTheme }) {
@@ -62,13 +69,13 @@ function ThemeToggle({ theme, toggleTheme }) {
 
 function App() {
   const route = useHashRoute()
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme, transition, finishTransition } = useTheme()
   const [open, setOpen] = React.useState(false)
   const closeMenu = () => setOpen(false)
 
-  if (route === '#gvs') return <GvsPage theme={theme} toggleTheme={toggleTheme} />
-
-  return (
+  const content = route === '#gvs' ? (
+    <GvsPage theme={theme} toggleTheme={toggleTheme} />
+  ) : (
     <div className="site-shell">
       <header className="nav-wrap">
         <nav className="nav container">
@@ -113,6 +120,13 @@ function App() {
       </main>
       <footer className="footer"><div className="container footer-inner"><span>© {new Date().getFullYear()} Vineeth</span><span>Designed & built from scratch</span><a href="#top">Back to top ↑</a></div></footer>
     </div>
+  )
+
+  return (
+    <>
+      {content}
+      {transition && <ThemeTransition type={transition} onComplete={finishTransition} />}
+    </>
   )
 }
 
