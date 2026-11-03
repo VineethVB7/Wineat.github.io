@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X } from 'lucide-react'
 import './styles.css'
 
 const projects = [
@@ -61,7 +61,7 @@ function App() {
 
         <section className="section statement-section"><div className="container statement"><div className="quote-mark">“</div><p>I like building at the intersection of <span>software, systems, and curiosity.</span></p></div></section>
 
-        <section id="contact" className="section container contact-section"><div className="section-label">04 / CONTACT</div><div className="contact-content"><div><div className="eyebrow">HAVE AN IDEA?</div><h2>Let's make<br /><em>something useful.</em></h2></div><div className="contact-side"><p>I'm always interested in interesting engineering problems, ambitious products, and conversations about things worth building.</p><div className="contact-links"><a href={`mailto:${EMAIL}`}><Mail size={18} /> {EMAIL} <ArrowUpRight size={15} /></a><a href="https://github.com/VineethVB7" target="_blank" rel="noreferrer"><Github size={18} /> GitHub <ArrowUpRight size={15} /></a><a href={LINKEDIN} target="_blank" rel="noreferrer"><Linkedin size={18} /> LinkedIn <ArrowUpRight size={15} /></a></div><div className="location"><MapPin size={16} /> India · Open to opportunities</div></div></div></section>
+        <section id="contact" className="section container contact-section"><div className="section-label">04 / CONTACT</div><div className="contact-content"><div><div className="eyebrow">HAVE AN IDEA?</div><h2>Let's make<br /><em>something useful.</em></h2></div><div className="contact-side"><p>I'm always interested in interesting engineering problems, ambitious products, and conversations about things worth building.</p><div className="contact-links"><a href={`mailto:${EMAIL}`}><Mail size={18} /> {EMAIL} <ArrowUpRight size={15} /></a><a href="https://github.com/VineethVB7" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a></div><div className="location"><MapPin size={16} /> India · Open to opportunities</div></div></div></section>
       </main>
       <footer className="footer"><div className="container footer-inner"><span>© {new Date().getFullYear()} Vineeth</span><span>Designed & built from scratch</span><a href="#top">Back to top ↑</a></div></footer>
     </div>
