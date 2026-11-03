@@ -5,6 +5,7 @@ import GvsPage from './GvsPage'
 import './styles.css'
 import './theme.css'
 import './mode-overrides.css'
+import './theme-transition.css'
 
 const projects = [
   { number: '01', title: 'GVS — Gyroscopic Vehicle System', type: 'Personal / Experimental', description: 'An ongoing engineering project exploring vehicle dynamics, sensor data, and a visual system for understanding and controlling induced current.', tags: ['React', 'Data Visualization', 'Vehicle Systems'], featured: true, href: '#gvs' },
@@ -35,11 +36,18 @@ function useHashRoute() {
 
 function useTheme() {
   const [theme, setTheme] = React.useState(() => localStorage.getItem('portfolio-theme') || 'dark')
+  const toggleTheme = React.useCallback(() => {
+    document.documentElement.classList.add('theme-transition')
+    setTheme(current => current === 'dark' ? 'light' : 'dark')
+    window.setTimeout(() => document.documentElement.classList.remove('theme-transition'), 460)
+  }, [])
+
   React.useEffect(() => {
     document.documentElement.dataset.theme = theme
     localStorage.setItem('portfolio-theme', theme)
   }, [theme])
-  return { theme, toggleTheme: () => setTheme(current => current === 'dark' ? 'light' : 'dark') }
+
+  return { theme, toggleTheme }
 }
 
 function ThemeToggle({ theme, toggleTheme }) {
