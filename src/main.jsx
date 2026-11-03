@@ -1,10 +1,11 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X } from 'lucide-react'
+import GvsPage from './GvsPage'
 import './styles.css'
 
 const projects = [
-  { number: '01', title: 'GVS — Gyroscopic Vehicle System', type: 'Personal / Experimental', description: 'An ongoing engineering project exploring vehicle dynamics, sensor data, and a visual system for understanding and controlling induced current.', tags: ['React', 'Data Visualization', 'Vehicle Systems'], featured: true },
+  { number: '01', title: 'GVS — Gyroscopic Vehicle System', type: 'Personal / Experimental', description: 'An ongoing engineering project exploring vehicle dynamics, sensor data, and a visual system for understanding and controlling induced current.', tags: ['React', 'Data Visualization', 'Vehicle Systems'], featured: true, href: '#gvs' },
   { number: '02', title: 'Workflow & Approval Platform', type: 'Enterprise Systems', description: 'Designed workflow-builder and approval-ladder capabilities for configurable business processes, including forms, process mappings, deployment, and runtime submissions.', tags: ['Angular', 'Spring Boot', 'PostgreSQL', 'Kafka'] },
   { number: '03', title: 'Real-time Chat Platform', type: 'Backend / Realtime', description: 'Worked on a service-oriented chat system using MQTT and WebSocket/STOMP patterns, with room management, message history, attachments, and notification flows.', tags: ['Angular', 'Spring Boot', 'MQTT', 'MongoDB'] },
   { number: '04', title: 'License Management System', type: 'Web Application', description: 'A frontend-heavy application focused on managing licenses and related business workflows with a modern React interface.', tags: ['React', 'Vite', 'REST APIs'] },
@@ -20,7 +21,23 @@ const skills = [
 const EMAIL = 'vineethbhagavati237@gmail.com'
 const LINKEDIN = 'https://www.linkedin.com/in/vineeth-bhagavati-4b5371246'
 
+function useHashRoute() {
+  const [route, setRoute] = React.useState(() => window.location.hash || '#top')
+
+  React.useEffect(() => {
+    const onHashChange = () => setRoute(window.location.hash || '#top')
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+  return route
+}
+
 function App() {
+  const route = useHashRoute()
+
+  if (route === '#gvs') return <GvsPage />
+
   const [open, setOpen] = React.useState(false)
   const closeMenu = () => setOpen(false)
 
@@ -55,7 +72,10 @@ function App() {
           <div><h2>Curious by default.<br /><span>Practical by design.</span></h2><div className="about-copy"><p>I enjoy taking complicated requirements and turning them into systems that are easier to understand, use, and maintain.</p><p>My work spans frontend interfaces, Java/Spring services, databases, event-driven systems, and real-time communication. Outside day-to-day product work, I like using software to explore engineering ideas through projects such as GVS.</p></div><div className="facts"><div><strong>01</strong><span>Systems<br />thinking</span></div><div><strong>02</strong><span>Full-stack<br />development</span></div><div><strong>03</strong><span>Always<br />experimenting</span></div></div></div>
         </section>
 
-        <section id="work" className="section work-section"><div className="container"><div className="section-heading"><div className="section-label">02 / SELECTED WORK</div><p>Things I've built, explored, and helped bring to life.</p></div><div className="project-list">{projects.map(project => <article className={`project ${project.featured ? 'featured' : ''}`} key={project.number}><div className="project-number">{project.number}</div><div className="project-main"><div className="project-meta">{project.type}</div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><div className="project-arrow"><ArrowUpRight size={25} /></div></article>)}</div></div></section>
+        <section id="work" className="section work-section"><div className="container"><div className="section-heading"><div className="section-label">02 / SELECTED WORK</div><p>Things I've built, explored, and helped bring to life.</p></div><div className="project-list">{projects.map(project => {
+          const content = <><div className="project-number">{project.number}</div><div className="project-main"><div className="project-meta">{project.type}</div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><div className="project-arrow"><ArrowUpRight size={25} /></div></>
+          return project.href ? <a className={`project ${project.featured ? 'featured' : ''}`} href={project.href} key={project.number} aria-label={`View details for ${project.title}`}>{content}</a> : <article className={`project ${project.featured ? 'featured' : ''}`} key={project.number}>{content}</article>
+        })}</div></div></section>
 
         <section id="stack" className="section container stack-section"><div className="section-label">03 / TOOLKIT</div><div className="stack-content"><h2>The tools behind<br /><span>the work.</span></h2><div className="skills-grid">{skills.map(({ icon: Icon, label, items }) => <div className="skill-card" key={label}><Icon size={22} strokeWidth={1.5} /><h3>{label}</h3><p>{items}</p></div>)}</div></div></section>
 
