@@ -38,16 +38,26 @@ function useHashRoute() {
 function useTheme() {
   const [theme, setTheme] = React.useState(() => localStorage.getItem('portfolio-theme') || 'dark')
   const [transition, setTransition] = React.useState(null)
+  const pendingTheme = React.useRef(null)
 
   const toggleTheme = React.useCallback(() => {
     setTheme(current => {
       const next = current === 'dark' ? 'light' : 'dark'
-      setTransition(next === 'dark' ? 'dark' : 'light')
-      return next
+      pendingTheme.current = next
+      setTransition(next)
+      return current
     })
   }, [])
 
-  const finishTransition = React.useCallback(() => setTransition(null), [])
+  const finishTransition = React.useCallback(() => {
+    const next = pendingTheme.current
+    if (next) {
+      setTheme(next)
+      localStorage.setItem('portfolio-theme', next)
+      pendingTheme.current = null
+    }
+    setTransition(null)
+  }, [])
 
   React.useEffect(() => {
     document.documentElement.dataset.theme = theme
