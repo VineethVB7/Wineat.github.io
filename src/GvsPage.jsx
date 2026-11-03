@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowLeft, ArrowUpRight, Database, Gauge, Layers3, Radio, Zap } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, Database, Gauge, Layers3, Radio, Zap, Sun, Moon } from 'lucide-react'
 
 const sections = [
   { icon: Gauge, number: '01', title: 'The idea', text: 'GVS is an experimental engineering project exploring whether a controlled gyroscopic system can be used to influence vehicle dynamics and how induced electrical current can be measured, modelled, and visualized.' },
@@ -7,13 +7,21 @@ const sections = [
   { icon: Radio, number: '03', title: 'Current direction', text: 'The immediate focus is a visualization model for the amount of current expected to be induced under different operating conditions. Hardware implementation comes later, after the software model and assumptions are understood.' },
 ]
 
-function GvsPage() {
+function GvsPage({ theme, toggleTheme }) {
+  const light = theme === 'light'
+
   return (
     <div className="gvs-page">
       <header className="nav-wrap">
         <nav className="nav container">
           <a className="brand" href="#top" aria-label="Back to Vineeth home"><span className="brand-mark">V</span><span>VINEETH</span></a>
-          <a className="gvs-back" href="#top"><ArrowLeft size={15} /> Back to portfolio</a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${light ? 'dark' : 'light'} mode`} title={`Switch to ${light ? 'dark' : 'light'} mode`}>
+              {light ? <Moon size={16} /> : <Sun size={16} />}
+              <span>{light ? 'Dark' : 'Light'}</span>
+            </button>
+            <a className="gvs-back" href="#top"><ArrowLeft size={15} /> Back to portfolio</a>
+          </div>
         </nav>
       </header>
 
