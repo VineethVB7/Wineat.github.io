@@ -1,168 +1,30 @@
 .theme-transition {
-  --zipper-dark: #09090b;
-  --zipper-light: #ffffff;
   position: fixed;
   inset: 0;
   z-index: 9999;
-  overflow: hidden;
   pointer-events: none;
-  isolation: isolate;
+  animation: theme-fade-away 450ms ease-out forwards;
 }
 
-/* The transition is intentionally a solid two-panel cover. There is no fade
-   and no background gradient: the page literally opens along a diagonal seam. */
-.zipper-panel {
-  position: absolute;
-  inset: -2px;
-  background: var(--zipper-dark);
-  will-change: transform;
+.theme-transition-dark {
+  background: #09090b;
 }
 
-.theme-transition-light .zipper-panel {
-  background: var(--zipper-light);
+.theme-transition-light {
+  background: #ffffff;
 }
 
-/* Before opening, the two panels meet exactly on a corner-to-corner diagonal. */
-.zipper-panel-a {
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-  animation: zipper-open-a 1900ms cubic-bezier(.77, 0, .18, 1) forwards;
-}
-
-.zipper-panel-b {
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-  animation: zipper-open-b 1900ms cubic-bezier(.77, 0, .18, 1) forwards;
-}
-
-/* Thin edges make the split read as a physical zipper instead of a fade. */
-.zipper-edge {
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  width: 3px;
-  height: 140%;
-  transform-origin: center;
-  background: rgba(255,255,255,.72);
-  box-shadow: 0 0 10px rgba(255,255,255,.42);
-  opacity: 0;
-  will-change: transform, opacity;
-}
-
-.zipper-edge-a {
-  animation: zipper-edge-a 1900ms cubic-bezier(.77, 0, .18, 1) forwards;
-}
-
-.zipper-edge-b {
-  animation: zipper-edge-b 1900ms cubic-bezier(.77, 0, .18, 1) forwards;
-}
-
-/* Small alternating teeth travel from the top-left corner to the bottom-right,
-   then disappear as the two sides separate. */
-.zipper-teeth {
-  position: absolute;
-  top: -8%;
-  left: -28%;
-  width: 156%;
-  height: 18px;
-  transform: rotate(45deg) translateX(-100%);
-  transform-origin: left center;
-  opacity: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(255,255,255,.92) 0 7px,
-    transparent 7px 14px
-  );
-  filter: drop-shadow(0 0 5px rgba(255,255,255,.5));
-  animation: zipper-teeth-run 1900ms cubic-bezier(.77, 0, .18, 1) forwards;
-}
-
-/* Dark -> light: panels start together, theme changes while fully covered,
-   then the zipper opens toward the bottom-right corner. */
-.theme-transition-dark .zipper-panel-a,
-.theme-transition-dark .zipper-panel-b {
-  background: var(--zipper-dark);
-}
-
-/* Light -> dark uses the same corner-to-corner mechanism in reverse. */
-.theme-transition-light .zipper-panel-a,
-.theme-transition-light .zipper-panel-b {
-  background: var(--zipper-light);
-}
-
-@keyframes zipper-open-a {
-  0%, 34% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-115vw, -115vh, 0);
-  }
-}
-
-@keyframes zipper-open-b {
-  0%, 34% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(115vw, 115vh, 0);
-  }
-}
-
-@keyframes zipper-edge-a {
-  0%, 34% {
-    opacity: 0;
-    transform: translate(-50%, 0) rotate(45deg);
-  }
-  43% {
-    opacity: .9;
-  }
-  72% {
-    opacity: .5;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(-50% - 115vw), -115vh) rotate(45deg);
-  }
-}
-
-@keyframes zipper-edge-b {
-  0%, 34% {
-    opacity: 0;
-    transform: translate(-50%, 0) rotate(45deg);
-  }
-  43% {
-    opacity: .9;
-  }
-  72% {
-    opacity: .5;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(-50% + 115vw), 115vh) rotate(45deg);
-  }
-}
-
-@keyframes zipper-teeth-run {
-  0%, 25% {
-    opacity: 0;
-    transform: rotate(45deg) translateX(-100%);
-  }
-  34% {
+@keyframes theme-fade-away {
+  from {
     opacity: 1;
-    transform: rotate(45deg) translateX(-62%);
   }
-  72% {
-    opacity: .95;
-    transform: rotate(45deg) translateX(20%);
-  }
-  100% {
+  to {
     opacity: 0;
-    transform: rotate(45deg) translateX(105%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .zipper-panel,
-  .zipper-edge,
-  .zipper-teeth {
-    animation-duration: .01ms !important;
+  .theme-transition {
+    animation-duration: 1ms;
   }
 }
