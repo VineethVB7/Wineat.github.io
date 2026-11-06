@@ -55,7 +55,7 @@ function useTheme() {
     localStorage.setItem('portfolio-theme', theme)
   }, [theme])
 
-  return { theme, toggleTheme, switchTheme, transition, finishTransition }
+  return { theme, toggleTheme, transition, finishTransition }
 }
 
 function ThemeToggle({ theme, toggleTheme }) {
