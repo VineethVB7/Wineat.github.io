@@ -101,7 +101,7 @@ function App() {
           <div className="hero-orbit" aria-hidden="true"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit-core">V<span>VB7</span></div><div className="orbit-dot dot-one" /><div className="orbit-dot dot-two" /></div>
         </section>
 
-        <div className="ticker" aria-hidden="true"><div className="ticker-track"><span className="ticker-content">BUILD · SHIP · LEARN · ITERATE ·</span><span className="ticker-content">BUILD · SHIP · LEARN · ITERATE ·</span></div></div>
+        <div className="ticker" aria-hidden="true"><div className="ticker-track"><span className="ticker-content">BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE ·</span><span className="ticker-content">BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE ·</span></div></div>
 
         <section id="about" className="section container about-grid">
           <div className="section-label">01 / ABOUT</div>
