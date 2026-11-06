@@ -59,7 +59,7 @@ h1 em, h2 em { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.
 
 .ticker { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; white-space: nowrap; color: #6f736f; padding: 13px 0; }
 .ticker-track { display: flex; width: max-content; animation: ticker-scroll 24s linear infinite; will-change: transform; }
-.ticker-content { flex: 0 0 auto; padding-right: 42px; word-spacing: 17px; }
+.ticker-content { flex: 0 0 auto; padding-right: 0; word-spacing: 17px; }
 @keyframes ticker-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
