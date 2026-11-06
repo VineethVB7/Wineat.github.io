@@ -94,3 +94,10 @@ html[data-theme='light'] .about-grid>div:last-child::before,html[data-theme='lig
   .theme-toggle span { display:none; }
   .theme-toggle { width:35px; padding:0; }
 }
+
+/* Light-mode ticker uses the portfolio's lightning blue accent. */
+html[data-theme='light'] .ticker {
+  color: #1687ff;
+  border-top-color: rgba(22,135,255,.22);
+  border-bottom-color: rgba(22,135,255,.22);
+}
