@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, Menu, X, Sun, Moon } from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin, Code2, Server, Database, Cpu, ShieldCheck, Menu, X, Sun, Moon } from 'lucide-react'
 import GvsPage from './GvsPage'
 import ThemeTransition from './ThemeTransition'
 import './styles.css'
@@ -115,9 +115,11 @@ function App() {
 
         <section id="stack" className="section container stack-section"><div className="section-label">03 / TOOLKIT</div><div className="stack-content"><h2>The tools behind<br /><span>the work.</span></h2><div className="skills-grid">{skills.map(({ icon: Icon, label, items }) => <div className="skill-card" key={label}><Icon size={22} strokeWidth={1.5} /><h3>{label}</h3><p>{items}</p></div>)}</div></div></section>
 
+        <section id="cybersecurity" className="section container cyber-section"><div className="section-label">04 / NEXT FRONTIER</div><div className="cyber-content"><div className="cyber-heading"><div className="cyber-icon"><ShieldCheck size={25} strokeWidth={1.5} /></div><div className="eyebrow">A FIELD I'M EXPLORING</div><h2>Aspiring<br /><em>cybersecurity enthusiast.</em></h2></div><div className="cyber-copy"><p>I'm interested in understanding how systems can be tested, protected, and made more resilient. Cybersecurity is a field I'm actively aspiring to grow into, alongside my software engineering journey.</p><p>I'm keen to deepen my knowledge of network security, ethical hacking, vulnerability assessment, and secure application design — always with a focus on responsible, defensive learning.</p><div className="cyber-topics"><span>Network Security</span><span>Ethical Hacking</span><span>Vulnerability Assessment</span><span>Secure Development</span></div></div></div></section>
+
         <section className="section statement-section"><div className="container statement"><div className="quote-mark">“</div><p>I like building at the intersection of <span>software, systems, and curiosity — with glorious purpose.</span></p></div></section>
 
-        <section id="contact" className="section container contact-section"><div className="section-label">04 / CONTACT</div><div className="contact-content"><div><div className="eyebrow">HAVE AN IDEA?</div><h2>Let's make<br /><em>something useful.</em></h2></div><div className="contact-side"><p>I'm always interested in interesting engineering problems, ambitious products, and conversations about things worth building.</p><div className="contact-links"><a href={`mailto:${EMAIL}`}><Mail size={18} /> {EMAIL} <ArrowUpRight size={15} /></a><a href="https://github.com/VineethVB7" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a></div><div className="location"><MapPin size={16} /> India · Open to opportunities</div></div></div></section>
+        <section id="contact" className="section container contact-section"><div className="section-label">05 / CONTACT</div><div className="contact-content"><div><div className="eyebrow">HAVE AN IDEA?</div><h2>Let's make<br /><em>something useful.</em></h2></div><div className="contact-side"><p>I'm always interested in interesting engineering problems, ambitious products, and conversations about things worth building.</p><div className="contact-links"><a href={`mailto:${EMAIL}`}><Mail size={18} /> {EMAIL} <ArrowUpRight size={15} /></a><a href="https://github.com/VineethVB7" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a></div><div className="location"><MapPin size={16} /> India · Open to opportunities</div></div></div></section>
       </main>
       <footer className="footer"><div className="container footer-inner"><span>© {new Date().getFullYear()} Vineeth</span><span>Designed & built from scratch</span><a href="#top">Back to top ↑</a></div></footer>
     </div>
