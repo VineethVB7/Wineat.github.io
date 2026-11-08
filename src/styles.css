@@ -103,6 +103,15 @@ h2 span { color: #676b68; }
 .skill-card h3 { font-size: 13px; margin-bottom: 9px; }
 .skill-card p { color: var(--muted); font-size: 11px; line-height: 1.6; margin: 0; }
 
+.cyber-section { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.cyber-content { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; margin-top: 55px; align-items: start; }
+.cyber-icon { width: 54px; height: 54px; display: grid; place-items: center; border: 1px solid var(--line); color: var(--accent); margin-bottom: 28px; }
+.cyber-heading h2 { margin: 18px 0 0; }
+.cyber-heading h2 em { color: var(--accent); }
+.cyber-copy { padding-top: 12px; max-width: 570px; }
+.cyber-copy p { color: var(--muted); font-size: 14px; line-height: 1.9; margin-bottom: 22px; }
+.cyber-topics { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; }
+.cyber-topics span { padding: 8px 11px; border: 1px solid var(--line); color: var(--soft); font: 400 10px 'DM Mono', monospace; letter-spacing: .04em; }
 .statement-section { padding: 80px 0; background: var(--accent); color: #10130a; }
 .statement { position: relative; }
 .quote-mark { font: 100px Georgia, serif; line-height: .4; opacity: .18; }
