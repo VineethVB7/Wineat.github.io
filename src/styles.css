@@ -228,11 +228,3 @@ h2 span { color: #676b68; }
     margin-top: 38px;
   }
 }
-
-.ticker-fail {
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: .2em;
-  opacity: .95;
-}
-html[data-theme='light'] .ticker-fail { color: #e53935; }
