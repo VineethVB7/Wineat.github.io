@@ -83,7 +83,7 @@ function App() {
           <a className="brand" href="#top" onClick={closeMenu} aria-label="Vineeth home"><span className="brand-mark">V</span><span>VINEETH</span></a>
           <button className="menu-button" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X size={21} /> : <Menu size={21} />}</button>
           <div className={`nav-links ${open ? 'is-open' : ''}`}>
-            <a href="#about" onClick={closeMenu}>About</a><a href="#work" onClick={closeMenu}>Work</a><a href="#stack" onClick={closeMenu}>Stack</a><a href="#contact" onClick={closeMenu}>Contact</a>
+            <a href="#about" onClick={closeMenu}>About</a><a href="#work" onClick={closeMenu}>Work</a><a href="#stack" onClick={closeMenu}>Stack</a><a href="#cybersecurity" onClick={closeMenu}>Security</a><a href="#contact" onClick={closeMenu}>Contact</a>
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
             <a className="nav-cta" href="https://github.com/VineethVB7" target="_blank" rel="noreferrer" onClick={closeMenu}>GitHub <ArrowUpRight size={15} /></a>
           </div>
@@ -95,7 +95,7 @@ function App() {
           <div className="hero-copy">
             <div className="eyebrow"><span className="pulse" /> SOFTWARE DEVELOPER · INDIA</div>
             <h1>I build software<br /><em>that moves ideas forward.</em></h1>
-            <p className="hero-text">Full-stack developer working across modern web applications, backend systems, data, and experiments that sit at the edge of software and the physical world.</p>
+            <p className="hero-text">I build web applications and backend services, with a focus on practical engineering, reliable systems, and data-driven problem solving.</p>
             <div className="hero-actions"><a className="button primary" href="#work">Explore my work <ArrowUpRight size={17} /></a><a className="button secondary" href="#contact">Let's connect</a></div>
           </div>
           <div className="hero-orbit" aria-hidden="true"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit-core">V<span>VB7</span></div><div className="orbit-dot dot-one" /><div className="orbit-dot dot-two" /></div>
@@ -108,7 +108,7 @@ function App() {
           <div><h2>Curious by default.<br /><span>Practical by design.</span></h2><div className="about-copy"><p>I enjoy taking complicated requirements and turning them into systems that are easier to understand, use, and maintain.</p><p>My work spans frontend interfaces, Java/Spring services, databases, event-driven systems, and real-time communication. Outside day-to-day product work, I like using software to explore engineering ideas through projects such as GVS.</p></div><div className="facts"><div><strong>01</strong><span>Systems<br />thinking</span></div><div><strong>02</strong><span>Full-stack<br />development</span></div><div><strong>03</strong><span>Always<br />experimenting</span></div></div></div>
         </section>
 
-        <section id="work" className="section work-section"><div className="container"><div className="section-heading"><div className="section-label">02 / SELECTED WORK</div><p>Things I've built, explored, and helped bring to life.</p></div><div className="project-list">{projects.map(project => {
+        <section id="work" className="section work-section"><div className="container"><div className="section-heading"><div className="section-label">02 / SELECTED WORK</div><p>Selected work across enterprise platforms, real-time systems, and independent engineering experiments.</p></div><div className="project-list">{projects.map(project => {
           const content = <><div className="project-number">{project.number}</div><div className="project-main"><div className="project-meta">{project.type}</div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><div className="project-arrow"><ArrowUpRight size={25} /></div></>
           return project.href ? <a className={`project ${project.featured ? 'featured' : ''}`} href={project.href} key={project.number} aria-label={`View details for ${project.title}`}>{content}</a> : <article className={`project ${project.featured ? 'featured' : ''}`} key={project.number}>{content}</article>
         })}</div></div></section>
@@ -119,7 +119,7 @@ function App() {
 
         <section className="section statement-section"><div className="container statement"><div className="quote-mark">“</div><p>I like building at the intersection of <span>software, systems, and curiosity — with glorious purpose.</span></p></div></section>
 
-        <section id="contact" className="section container contact-section"><div className="section-label">05 / CONTACT</div><div className="contact-content"><div><div className="eyebrow">HAVE AN IDEA?</div><h2>Let's make<br /><em>something useful.</em></h2></div><div className="contact-side"><p>I'm always interested in interesting engineering problems, ambitious products, and conversations about things worth building.</p><div className="contact-links"><a href={`mailto:${EMAIL}`}><Mail size={18} /> {EMAIL} <ArrowUpRight size={15} /></a><a href="https://github.com/VineethVB7" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a></div><div className="location"><MapPin size={16} /> India · Open to opportunities</div></div></div></section>
+        <section id="contact" className="section container contact-section"><div className="section-label">05 / CONTACT</div><div className="contact-content"><div><div className="eyebrow">HAVE AN IDEA?</div><h2>Let's make<br /><em>something useful.</em></h2></div><div className="contact-side"><p>I'm interested in thoughtful teams, meaningful engineering challenges, and opportunities to build software that makes a practical difference.</p><div className="contact-links"><a href={`mailto:${EMAIL}`}><Mail size={18} /> {EMAIL} <ArrowUpRight size={15} /></a><a href="https://github.com/VineethVB7" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a><a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a></div><div className="location"><MapPin size={16} /> India · Open to opportunities</div></div></div></section>
       </main>
       <footer className="footer"><div className="container footer-inner"><span>© {new Date().getFullYear()} Vineeth</span><span>Designed & built from scratch</span><a href="#top">Back to top ↑</a></div></footer>
     </div>
