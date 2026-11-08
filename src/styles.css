@@ -220,3 +220,11 @@ h2 span { color: #676b68; }
   .gvs-status-list b { grid-column: 2; }
   .gvs-actions { flex-direction: column; align-items: stretch; }
 }
+
+@media (max-width: 760px) {
+  .cyber-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    margin-top: 38px;
+  }
+}
