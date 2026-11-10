@@ -191,3 +191,25 @@ html[data-theme='light'] .tags span { background: rgba(22,135,255,.025); }
   .nav-links a { padding: 12px 8px; }
   .nav-cta { justify-content: space-between; margin-top: 6px; }
 }
+
+/* Hero headline alignment after removing the decorative orbit graphic. */
+.hero {
+  display: flex;
+  justify-content: flex-start;
+}
+.hero-copy {
+  width: 100%;
+  max-width: 900px;
+  margin: 0;
+}
+.hero h1 {
+  width: 100%;
+  max-width: none;
+  text-align: left;
+}
+.hero h1 em {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: 0;
+}
