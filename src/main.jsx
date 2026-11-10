@@ -98,7 +98,7 @@ function App() {
             <p className="hero-text">I build web applications and backend services, with a focus on practical engineering, reliable systems, and data-driven problem solving.</p>
             <div className="hero-actions"><a className="button primary" href="#work">Explore my work <ArrowUpRight size={17} /></a><a className="button secondary" href="#contact">Let's connect</a></div>
           </div>
-          <div className="hero-orbit" aria-hidden="true"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit-core">V<span>VB7</span></div><div className="orbit-dot dot-one" /><div className="orbit-dot dot-two" /></div>
+          
         </section>
 
         <div className="ticker" aria-hidden="true"><div className="ticker-track"><span className="ticker-content">BUILD · SHIP · LEARN · ITERATE · FAIL · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · FAIL · BUILD · SHIP · LEARN · ITERATE · FAIL · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · FAIL · BUILD · SHIP · LEARN · ITERATE ·</span><span className="ticker-content">BUILD · SHIP · LEARN · ITERATE · FAIL · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · FAIL · BUILD · SHIP · LEARN · ITERATE · FAIL · BUILD · SHIP · LEARN · ITERATE · BUILD · SHIP · LEARN · ITERATE · FAIL · BUILD · SHIP · LEARN · ITERATE ·</span></div></div>
